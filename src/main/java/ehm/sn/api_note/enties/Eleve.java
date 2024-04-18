@@ -1,10 +1,10 @@
-package ehm.dev.api_note.enties;
+package ehm.sn.api_note.enties;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
@@ -18,6 +18,8 @@ public class Eleve {
     private Long id;
     private String nom;
     private String prenom;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "UTC")
     private Date dateN;
     private String sexe;
     private String image;

@@ -1,7 +1,7 @@
-package ehm.dev.api_note.controller;
+package ehm.sn.api_note.controller;
 
-import ehm.dev.api_note.enties.Matiere;
-import ehm.dev.api_note.services.MatiereService;
+import ehm.sn.api_note.enties.Matiere;
+import ehm.sn.api_note.services.MatiereService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,14 +32,14 @@ public class MatiereController {
         return  matiereService.saveMatiere(matiere);
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Matiere> updateMatiere(@PathVariable Long id, @RequestBody Matiere matiere){
-        return ResponseEntity.ok(matiereService.updateMatiere(id, matiere));
+    @PutMapping
+    public void updateMatiere(@RequestBody Matiere matiere){
+         matiereService.updateMatiere(matiere);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteMatiere(@PathVariable Long id){
-        return matiereService.deleteMatiere(id);
+    public void deleteMatier(@PathVariable Long id){
+        matiereService.deleteMatiere(id);
     }
 
 }

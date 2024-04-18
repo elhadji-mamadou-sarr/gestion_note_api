@@ -1,6 +1,6 @@
-package ehm.dev.api_note.repositories;
+package ehm.sn.api_note.repositories;
 
-import ehm.dev.api_note.enties.Eleve;
+import ehm.sn.api_note.enties.Eleve;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package ehm.dev.api_note;
+package ehm.sn.api_note;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

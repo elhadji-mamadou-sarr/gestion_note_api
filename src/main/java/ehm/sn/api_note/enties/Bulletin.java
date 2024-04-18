@@ -1,4 +1,4 @@
-package ehm.dev.api_note.enties;
+package ehm.sn.api_note.enties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,10 +1,10 @@
-package ehm.dev.api_note.services;
+package ehm.sn.api_note.services;
 
-import ehm.dev.api_note.enties.Bulletin;
-import ehm.dev.api_note.enties.Eleve;
-import ehm.dev.api_note.enties.Matiere;
-import ehm.dev.api_note.enties.Note;
-import ehm.dev.api_note.repositories.NoteRepository;
+import ehm.sn.api_note.enties.Bulletin;
+import ehm.sn.api_note.enties.Eleve;
+import ehm.sn.api_note.enties.Matiere;
+import ehm.sn.api_note.enties.Note;
+import ehm.sn.api_note.repositories.NoteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -70,6 +70,7 @@ public class NoteService {
         noteRepository.deleteById(id);
         return "Note supprimer avec succes !";
     }
+
 
 
 }
