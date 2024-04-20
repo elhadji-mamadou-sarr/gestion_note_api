@@ -23,6 +23,11 @@ public class eleveController {
         return eleveService.saveEleve(eleve);
     }
 
+    @GetMapping("/{id}")
+    public Eleve eleve(@PathVariable Long id){
+        return eleveService.getEleveById(id);
+    }
+
     @PutMapping
     public void updateEleve(@RequestBody Eleve eleve){
          eleveService.updateEleve(eleve);

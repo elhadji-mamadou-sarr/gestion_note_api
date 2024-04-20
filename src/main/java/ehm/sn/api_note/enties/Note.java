@@ -1,15 +1,13 @@
 package ehm.sn.api_note.enties;
 
-
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
+@AllArgsConstructor @NoArgsConstructor @Data @Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Note {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

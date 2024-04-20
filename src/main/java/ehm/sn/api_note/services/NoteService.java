@@ -5,25 +5,23 @@ import ehm.sn.api_note.enties.Eleve;
 import ehm.sn.api_note.enties.Matiere;
 import ehm.sn.api_note.enties.Note;
 import ehm.sn.api_note.repositories.NoteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class NoteService {
 
-    private final NoteRepository noteRepository;
+    @Autowired
+    private NoteRepository noteRepository;
 
-    public NoteService(NoteRepository noteRepository) {
-        this.noteRepository = noteRepository;
-    }
-
-    public List<Note> getNotes(){
+    public List<Note> notes(){
         return noteRepository.findAll();
     }
 
-    public Note addNote(Note note){
+    public Note addNote(Note note) {
         Long notes = (note.getNote_1() + note.getNote_2()) / 2;
         Long moyenne = (notes + note.getIntegration()) / 2;
         note.setMoyenne(moyenne);
@@ -31,18 +29,11 @@ public class NoteService {
         return noteRepository.save(note);
     }
 
-    public Note updateNote(Long id){
-        Optional<Note> noteOptional = noteRepository.findById(id);
-        if (noteOptional.isPresent()) {
-            Long notes = (noteOptional.get().getNote_1() + noteOptional.get().getNote_2()) / 2;
-            Long moyenne = (notes + noteOptional.get().getIntegration()) / 2;
-            noteOptional.get().setMoyenne(moyenne);
-            noteOptional.get().setMoyX(moyenne * noteOptional.get().getMatiere().getCoef());
-            return noteRepository.save(noteOptional.get());
-        }else{
-            throw new RuntimeException("Note non trouvé !");
-        }
+    @Transactional
+    public void updateNote(Note note){
+        System.out.println("Methode Update" + note);
     }
+
 
     public Bulletin getNoteByEleve(Eleve eleve){
         Bulletin bulletin = new Bulletin();
@@ -54,7 +45,9 @@ public class NoteService {
             sommeCoef += note.getMatiere().getCoef();
             sommeMoyenne += note.getMoyX();
         }
-        moyenneGeneral = sommeMoyenne/sommeCoef;
+        if (sommeCoef != 0) {
+            moyenneGeneral = sommeMoyenne / sommeCoef;
+        }
         bulletin.setNotes(notes);
         bulletin.setSommeCoef(sommeCoef);
         bulletin.setMoyenneGeneral(moyenneGeneral);
@@ -66,9 +59,8 @@ public class NoteService {
         return noteRepository.findByMatiere(matiere);
     }
 
-    public String deleteNote(Long id){
+    public void deleteNote(Long id){
         noteRepository.deleteById(id);
-        return "Note supprimer avec succes !";
     }
 
 

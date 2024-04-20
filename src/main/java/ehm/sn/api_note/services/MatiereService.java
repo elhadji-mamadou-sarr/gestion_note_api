@@ -34,7 +34,7 @@ public class MatiereService {
         if (optionalMatiere.isPresent()) {
             Matiere existantMatiere = optionalMatiere.get();
             existantMatiere.setNom(matiere.getNom());
-            existantMatiere.setNotes(matiere.getNotes());
+            //existantMatiere.setNotes(matiere.getNotes());
             existantMatiere.setCoef(matiere.getCoef());
             matiereRepository.save(existantMatiere);
         }else

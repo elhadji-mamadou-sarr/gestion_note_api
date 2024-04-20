@@ -1,6 +1,5 @@
 package ehm.sn.api_note.controller;
 
-
 import ehm.sn.api_note.enties.Bulletin;
 import ehm.sn.api_note.enties.Eleve;
 import ehm.sn.api_note.enties.Matiere;
@@ -17,25 +16,27 @@ import java.util.List;
 @RequestMapping("/v1/notes")
 public class NoteController {
 
-    private final NoteService noteService;
-
+    @Autowired
+    private NoteService noteService;
     @Autowired
     private EleveService eleveService;
     @Autowired
     private MatiereService matiereService;
 
-    public NoteController(NoteService noteService) {
-        this.noteService = noteService;
-    }
 
     @GetMapping
-    public List<Note> getAllNotes(){
-        return noteService.getNotes();
+    public List<Note> notes(){
+        return noteService.notes();
     }
 
     @PostMapping
     public Note addNote(@RequestBody Note note){
         return noteService.addNote(note);
+    }
+
+    @PutMapping
+    public void updateNote(@RequestBody Note note){
+        noteService.updateNote(note);
     }
 
     @GetMapping("/eleve/{id}")
@@ -50,14 +51,9 @@ public class NoteController {
         return noteService.getNoteByMatiere(matiere);
     }
 
-    @PutMapping("/{id}")
-    public Note updateNote(@PathVariable Long id){
-      return noteService.updateNote(id);
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteNote(@PathVariable Long id){
-        return noteService.deleteNote(id);
+    @DeleteMapping
+    public void deleteNote(@PathVariable Long id){
+         noteService.deleteNote(id);
     }
 
 
