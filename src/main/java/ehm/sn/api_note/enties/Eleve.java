@@ -26,5 +26,8 @@ public class Eleve {
     @JsonIgnore
     private List<Note> notes;
 
+    @ManyToOne
+    private Classe classe;
+
 
 }
